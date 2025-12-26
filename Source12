@@ -8638,10 +8638,16 @@ function Compkiller.new(Config : Window)
 					v:Disconnect();
 				end;
 
-				for i,v in next , FullConfig do
-					local Button = TabArgs:_DrawConfig();
-	                assert(Button.SetInfo, "SetInfo is missing on ConfigButton")
-					Button:SetInfo(v.Info.Author,v.Name);
+				for i, v in next, FullConfig do
+
+				    if type(v.Info) ~= "table" then
+				        warn("Invalid config entry:", v.Name, v.Info)
+				        continue
+				    end
+				
+				    local Button = TabArgs:_DrawConfig()
+				
+				    Button:SetInfo(v.Info.Author, v.Name)
 
 					table.insert(__signals,TabOpenSignal:Connect(function(v)
 						Button:Toggle(v);
