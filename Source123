@@ -8640,10 +8640,18 @@ function Compkiller.new(Config : Window)
 
 				for i, v in next, FullConfig do
 
-				    if type(v.Info) ~= "table" then
-				        warn("Invalid config entry:", v.Name, v.Info)
-				        continue
-				    end
+				if type(v.Info) ~= "table" then
+				    warn("Invalid config entry:", v.Name, v.Info)
+				
+				    v.Info = {
+				        Author = "Unknown"
+				    }
+				
+				    Configuration.Config:WriteConfig({
+				        Name = v.Name,
+				        Author = v.Info.Author,
+				    })
+				end
 				
 				    local Button = TabArgs:_DrawConfig()
 				
