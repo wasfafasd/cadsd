@@ -8459,14 +8459,14 @@ function Compkiller.new(Config : Window)
 			});
 
 			function ConfigButton:SetInfo(Author , ConfigName)
-				local R,G,B = tostring(math.floor(Compkiller.Colors.Highlight.R * 255)) , tostring(math.floor(Compkiller.Colors.Highlight.G * 255)) , tostring(math.floor(Compkiller.Colors.Highlight.B * 255));
-
-				AuthorText.Text = string.format("Author: <font color=\"rgb(%s, %s, %s)\">%s</font>" ,R,G,B , tostring(Author));
-				ConfigText.Text = ConfigName;
-
-				if ConfigBlock.BackgroundTransparency >= 0.7 then
-					ConfigButton:Update();
-				end;
+			    local R,G,B = tostring(math.floor(Compkiller.Colors.Highlight.R * 255)) , tostring(math.floor(Compkiller.Colors.Highlight.G * 255)) , tostring(math.floor(Compkiller.Colors.Highlight.B * 255));
+			
+			    AuthorText.Text = string.format("Author: <font color=\"rgb(%s, %s, %s)\">%s</font>" ,R,G,B , tostring(Author));
+			    ConfigText.Text = ConfigName;
+			
+			    if ConfigBlock.BackgroundTransparency >= 0.7 then
+			        ConfigButton:Update();
+			    end;
 			end;
 
 			function ConfigButton:Toggle(v)
@@ -8640,7 +8640,7 @@ function Compkiller.new(Config : Window)
 
 				for i,v in next , FullConfig do
 					local Button = TabArgs:_DrawConfig();
-
+	                assert(Button.SetInfo, "SetInfo is missing on ConfigButton")
 					Button:SetInfo(v.Info.Author,v.Name);
 
 					table.insert(__signals,TabOpenSignal:Connect(function(v)
