@@ -8639,20 +8639,12 @@ function Compkiller.new(Config : Window)
 				end;
 
 				for i, v in next, FullConfig do
-
-				if type(v.Info) ~= "table" then
-				    warn("Invalid config entry:", v.Name, v.Info)
+				    if type(v.Info) ~= "table" then
+				        continue
+				    end
 				
-				    v.Info = {
-				        Author = "Unknown"
-				    }
-				
-				    Configuration.Config:WriteConfig({
-				        Name = v.Name,
-				        Author = v.Info.Author,
-				    })
-				end
-				
+				    -- Force author to arox
+				    v.Info.Author = "arox"
 				    local Button = TabArgs:_DrawConfig()
 				
 				    Button:SetInfo(v.Info.Author, v.Name)
