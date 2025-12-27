@@ -8634,7 +8634,7 @@ function Compkiller.new(Config : Window)
 					v:Disconnect();
 				end;
 
-				for i,v in next , FullConfig do
+				for key, v in next, FullConfig do
 					local Button = TabArgs:_DrawConfig();
 
 					Button:SetInfo("", v.Name)
@@ -8643,9 +8643,9 @@ function Compkiller.new(Config : Window)
 						Button:Toggle(v);
 					end));
 
-					Button.OnLoad = function()
-						Configuration.Config:LoadConfig(v.Name);
-					end;
+				    Button.OnLoad = function()
+				        Configuration.Config:LoadConfig(key)
+				    end
 
 					Button.OnSave = function()
 						local NewAuthorText = "";
