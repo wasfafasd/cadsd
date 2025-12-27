@@ -8638,34 +8638,35 @@ function Compkiller.new(Config : Window)
 					v:Disconnect();
 				end;
 
-			for i,v in next , FullConfig do
-			    if type(v) == "table" and type(v.Info) == "table" then
-			        local Button = TabArgs:_DrawConfig()
-			        Button:SetInfo(v.Info.Author, v.Name)
-			
-			        table.insert(__signals, TabOpenSignal:Connect(function(v)
-			            Button:Toggle(v)
-			        end))
-			
-			        Button.OnLoad = function()
-			            Configuration.Config:LoadConfig(v.Name)
-			        end
-			
-			        Button.OnSave = function()
-			            local NewAuthorText = ((v.Info.Author == WindowArgs.Username) and WindowArgs.Username) or v.Info.Author .. " [EDIT]"
-			            Button:SetInfo(NewAuthorText, v.Name)
-			
-			            Configuration.Config:WriteConfig({
-			                Name = v.Name,
-			                Author = NewAuthorText;
-			            })
-			        end
-			
-			        Button.OnDelete = function()
-			            Configuration.Config:DeleteConfig(v.Name)
-			        end
-			    end
-			end
+				for i,v in next , FullConfig do
+					local Button = TabArgs:_DrawConfig();
+
+					Button:SetInfo(v.Info.Author,v.Name);
+
+					table.insert(__signals,TabOpenSignal:Connect(function(v)
+						Button:Toggle(v);
+					end));
+
+					Button.OnLoad = function()
+						Configuration.Config:LoadConfig(v.Name);
+					end;
+
+					Button.OnSave = function()
+						local NewAuthorText = ((v.Info.Author == WindowArgs.Username) and  WindowArgs.Username) or v.Info.Author .. " [EDIT]";
+
+						Button:SetInfo(NewAuthorText,v.Name);
+
+						Configuration.Config:WriteConfig({
+							Name = v.Name,
+							Author = NewAuthorText;
+						});
+					end
+
+					Button.OnDelete = function()
+						Configuration.Config:DeleteConfig(v.Name)
+					end
+				end;
+			end;
 
 			Refresh();
 
