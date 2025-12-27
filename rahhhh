@@ -8599,10 +8599,6 @@ function Compkiller.new(Config : Window)
 				task.spawn(ConfigButton.OnDelete);
 			end)
 
-			ConfigButton.OnLoad = nil;
-			ConfigButton.OnSave = nil;
-			ConfigButton.OnDelete = nil;
-
 			return ConfigButton;
 		end;
 
