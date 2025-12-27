@@ -10085,7 +10085,7 @@ function Compkiller:ConfigManager(ConfigManager: ConfigManager) : ConfigFunction
 
 	function Args:WriteConfig(Config: WriteConfig)
 		Config = Compkiller.__CONFIG(Config , {
-			Name = Compkiller:_RandomString(),
+			Name = Config.Name,
 			Author = LocalPlayer.Name,
 		});
 
