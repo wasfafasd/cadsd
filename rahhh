@@ -8652,7 +8652,7 @@ function Compkiller.new(Config : Window)
 					end;
 
 					Button.OnSave = function()
-						local NewAuthorText = ((v.Info.Author == WindowArgs.Username) and  WindowArgs.Username) or "Test" .. " [EDIT]";
+						local NewAuthorText = "";
 
 						Button:SetInfo(NewAuthorText,v.Name);
 
