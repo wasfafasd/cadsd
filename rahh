@@ -8641,7 +8641,7 @@ function Compkiller.new(Config : Window)
 				for i,v in next , FullConfig do
 					local Button = TabArgs:_DrawConfig();
 
-					Button:SetInfo(v.Info.Author,v.Name);
+					Button:SetInfo("", v.Name)
 
 					table.insert(__signals,TabOpenSignal:Connect(function(v)
 						Button:Toggle(v);
