@@ -8620,7 +8620,7 @@ function Compkiller.new(Config : Window)
 
 					Configuration.Config:WriteConfig({
 						Name = TextBox.Text,
-						Author = WindowArgs.Username,
+						Author = "test",
 					});
 				end;
 			end);
@@ -8652,7 +8652,7 @@ function Compkiller.new(Config : Window)
 					end;
 
 					Button.OnSave = function()
-						local NewAuthorText = ((v.Info.Author == WindowArgs.Username) and  WindowArgs.Username) or v.Info.Author .. " [EDIT]";
+						local NewAuthorText = ((v.Info.Author == WindowArgs.Username) and  WindowArgs.Username) or "Test" .. " [EDIT]";
 
 						Button:SetInfo(NewAuthorText,v.Name);
 
