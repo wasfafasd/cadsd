@@ -8587,16 +8587,33 @@ function Compkiller.new(Config : Window)
 
 			ConfigButton:Update();
 
-			Compkiller:_Input(LoadButton,function()
-				task.spawn(ConfigButton.OnLoad);
-			end);
-
-			Compkiller:_Input(SaveButton,function()
-				task.spawn(ConfigButton.OnSave);
-			end);
-
+			Button.OnLoad = function()
+			    Configuration.Config:LoadConfig(v.Name)
+			end
+			
+			Button.OnSave = function()
+			    local NewAuthorText = ""
+			    Button:SetInfo(NewAuthorText, v.Name)
+			    Configuration.Config:WriteConfig({
+			        Name = v.Name,
+			        Author = NewAuthorText;
+			    })
+			end
+			
+			Button.OnDelete = function()
+			    Configuration.Config:DeleteConfig(v.Name)
+			end
+			
+			Compkiller:_Input(LoadButton, function()
+			    task.spawn(Button.OnLoad)
+			end)
+			
+			Compkiller:_Input(SaveButton, function()
+			    task.spawn(Button.OnSave)
+			end)
+			
 			DelButton.MouseButton1Click:Connect(function()
-				task.spawn(ConfigButton.OnDelete);
+			    task.spawn(Button.OnDelete)
 			end)
 
 			return ConfigButton;
